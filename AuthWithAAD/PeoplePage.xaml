@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AuthWithAAD.PeoplePage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Logout"
+                 Order="Primary"
+                 Priority="0"
+                 Clicked="OnLogoutClicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+       
+        <CollectionView >
+
+        </CollectionView>
+    </ContentPage.Content>
+</ContentPage>

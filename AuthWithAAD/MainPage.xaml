@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AuthWithAAD.MainPage">
+     <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="Welcome to My Colleagues"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"
+                   FontSize="36" />
+        </Frame>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Label Text="Sign in to view your data and collaborate with your colleagues"
+                   FontSize="16"
+                   Padding="30,40,30,0" />
+        
+            <Button x:Name="SignIn"
+                    Text="Sign in"
+                    Clicked="SignIn_Clicked"
+                    Margin="50,30,50,30"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
