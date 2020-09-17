@@ -1,46 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Microsoft.Graph;
 using Xamarin.Forms;
 
 namespace AuthWithAAD
 {
     public partial class PeoplePage : ContentPage
     {
-        public IList<Colleague> Colleagues { get; private set; }
-
+        ColleagueViewModel viewModel;
         public PeoplePage()
         {
             InitializeComponent();
+            BindingContext = viewModel = new ColleagueViewModel();
         }
 
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
-            var data = await LoadGraphData();
-            Colleagues = TransformGraphDataToDto(data);
             base.OnAppearing();
-        }
 
-        private List<Colleague> TransformGraphDataToDto(IUserPeopleCollectionPage data)
-        {
-            var items = data.ToList();
-            var colleagues = new List<Colleague>();
-            foreach(var item in items)
-            {
-                var colleague = new Colleague
-                {
-                    Name = item?.GivenName,
-                    Department = item?.Department,
-                    EmailAddress = item?.ScoredEmailAddresses.FirstOrDefault().Address,
-                    Title = item.JobTitle
-                };
-                colleagues.Add(colleague);
-            }
-
-            return colleagues;
+            if (viewModel.Colleagues.Count == 0)
+                viewModel.IsBusy = true;
         }
 
         public async void OnLogoutClicked(object sender, EventArgs e)
@@ -55,23 +32,6 @@ namespace AuthWithAAD
             }
         }
 
-        private async Task<IUserPeopleCollectionPage> LoadGraphData()
-        {
-            if (App.AuthResult == null)
-            {
-                await AuthService.SignInAsync();
-            }
-
-            var graphServiceClient = new GraphServiceClient(new DelegateAuthenticationProvider((requestMessage) => {
-                requestMessage
-                    .Headers
-                    .Authorization = new AuthenticationHeaderValue("Bearer", App.AuthResult.AccessToken);
-
-                return Task.FromResult(0);
-            }));
-
-            return await graphServiceClient.Me.People.Request().GetAsync();
-        }
     }
 
     public class Colleague
