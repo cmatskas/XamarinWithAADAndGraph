@@ -24,14 +24,14 @@ namespace AuthWithAAD
                                           .WithAuthority($"https://login.microsoftonline.com/{Constants.TenantId}")
                                           .WithIosKeychainSecurityGroup(Constants.iOSKeyChainSecurityGroup)
                                           .Build();
-            if (AuthResult != null)
+            /*if (AuthResult != null)
             {
                 MainPage = new NavigationPage(new PeoplePage());
             }
             else
-            {
+            {*/
                 MainPage = new NavigationPage(new MainPage());
-            }
+            //}
         }
       
         protected override void OnStart()

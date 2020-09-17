@@ -1,15 +1,47 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="AuthWithAAD.PeoplePage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AuthWithAAD.PeoplePage"
+             xmlns:local="clr-namespace:AuthWithAAD">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Logout"
                  Order="Primary"
                  Priority="0"
                  Clicked="OnLogoutClicked"/>
     </ContentPage.ToolbarItems>
+   <ContentPage.BindingContext>
+        <local:PeoplePage />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-       
-        <CollectionView >
-
+        <CollectionView ItemsSource="{Binding Colleagues}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding }"
+                               FontAttributes="Bold"
+                               HorizontalOptions="StartAndExpand" />
+                        <Label Grid.Row="2"
+                               Grid.Column="1"
+                               Text="{Binding Title}"
+                               HorizontalOptions="StartAndExpand" />
+                        <Label Grid.Row="3"
+                               Grid.Column="1"
+                               Text="{Binding EmailAddress}"
+                               FontAttributes="Italic"
+                               HorizontalOptions="StartAndExpand" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
         </CollectionView>
     </ContentPage.Content>
 </ContentPage>
