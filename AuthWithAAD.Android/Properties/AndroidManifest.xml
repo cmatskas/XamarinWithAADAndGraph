@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.authwithaad">
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.authwithaad" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
 	<application android:label="AuthWithAAD.Android" android:theme="@style/MainTheme">
 		<activity android:name="microsoft.identity.client.BrowserTabActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 				<category android:name="android.intent.category.DEFAULT" />
 				<category android:name="android.intent.category.BROWSABLE" />
-				<data android:scheme="msalf365af90-d6ee-4959-b8ac-667ccac6739a" android:host="auth" />
+				<data android:scheme="msal6621f187-bb2c-4792-9d61-2fdf863afaab" android:host="auth" />
 			</intent-filter>
 		</activity>
 	</application>

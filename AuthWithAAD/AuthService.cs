@@ -24,7 +24,15 @@ namespace AuthWithAAD
             }
             catch (MsalUiRequiredException)
             {
-                var interactiveRequest = App.ClientApplication.AcquireTokenInteractive(Constants.Scopes);
+                var interactiveRequest = App.ClientApplication
+                                                .AcquireTokenInteractive(Constants.Scopes)
+                                                .WithParentActivityOrWindow(App.AuthUIParent);
+                var systemWebViewOptions = new SystemWebViewOptions()
+                {
+                    iOSHidePrivacyPrompt = true
+                };
+                interactiveRequest.WithSystemWebViewOptions(systemWebViewOptions);
+                interactiveRequest.WithUseEmbeddedWebView(false);
 
                 if (App.AuthUIParent != null)
                 {
